@@ -2,6 +2,11 @@ package token
 
 type TokenType string
 
+type Token struct {
+  Type TokenType
+  Literal string
+}
+
 const (
   // 未知のtokenや文字列
   ILLEGAL = "ILLEGAL"
@@ -36,12 +41,6 @@ const (
   FUNCTION = "FUNCTION"
   LET = "LET"
 )
-
-type Token struct {
-  Type TokenType
-  Literal string
-}
-
 var keyword = map[string]TokenType{
   "fn":  FUNCTION,
   "let": LET,
