@@ -13,6 +13,12 @@ func TestNextToken(t *testing.T) {
   };
 
   let result = add(five, ten);
+
+  if (5 < 10) {
+    return true;
+  } else {
+    return false;
+  }
   `
 
   tests  := []struct {
