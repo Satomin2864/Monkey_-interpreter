@@ -9,6 +9,9 @@ type Lexer struct {
   ch           byte   // 現在探索中の文字
 }
 
+// オブジェクト思考系の言語で言うとこの、
+// インスタンス生成的な事をやっている
+// 多分、ポインタ変数
 func New(input string) *Lexer {
   l := &Lexer{input: input}
   l.readChar()
@@ -87,6 +90,20 @@ func (l *Lexer) skipWhitespace() {
   }
 }
 
+func (l *Lexer) readChar(){
+  if l.readPosition >= len(l.input) {
+    l.ch = 0
+  } else {
+    l.ch = l.input[l.readPosition]
+  }
+  l.position = l.readPosition
+  l.readPosition += 1
+}
+
+func isLetter(ch byte) bool {
+  return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
+}
+
 func (l *Lexer) readNumber() string {
   position := l.position
   for isDigit(l.ch) {
@@ -97,8 +114,4 @@ func (l *Lexer) readNumber() string {
 
 func isDigit(ch byte) bool {
   return '0' <= ch && ch <= '9'
-}
-
-func isLetter(ch byte) bool {
-  return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
 }
