@@ -45,6 +45,10 @@ const (
   IF = "IF"
   ELSE = "ELSE"
   RETURN = "RETURN"
+
+  // 比較用の演算子
+  EQ = "=="
+  NOT_EQ = "!="
 )
 var keyword = map[string]TokenType{
   "fn":     FUNCTION,
