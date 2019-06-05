@@ -2,11 +2,14 @@ package token
 
 type TokenType string
 
+// トークンの種類とリテラルを持っている
+// トークン構造体を定義
 type Token struct {
   Type TokenType
   Literal string
 }
 
+// Monkey言語で用いる演算子、リテラルetcを定数宣言
 const (
   // 未知のtokenや文字列
   ILLEGAL = "ILLEGAL"
@@ -50,6 +53,8 @@ const (
   EQ = "=="
   NOT_EQ = "!="
 )
+
+// キーをstringとしてTokenTypeを紐付けたmap型
 var keyword = map[string]TokenType{
   "fn":     FUNCTION,
   "let":    LET,
@@ -60,6 +65,9 @@ var keyword = map[string]TokenType{
   "return": RETURN,
 }
 
+// 引数としてもらったindentをキーとするmapがkeywordに存在するなら、
+// 対応したtokenを返す
+// なければ、インデントtokenを返す
 func LookupIdent(indent string) TokenType {
   if tok, ok := keyword[indent]; ok {
     return tok
